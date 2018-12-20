@@ -1,0 +1,19 @@
+{
+  "name": "websockets_blockchains_exercise",
+  "version": "1.0.0",
+  "description": "grabs relevant information from BTC market and Poloniex api's and display the relevant information to the frontend via websockets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Duarte",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "ws": "^6.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
