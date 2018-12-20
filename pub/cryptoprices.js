@@ -13,10 +13,8 @@ function httpGET(url) {
     request.open("GET", url);
     request.onload = () => {
       if (request.status == 200) {
-        console.log("success")
         resolve(request.response);
       } else {
-        console.log("rejecting")
         reject(Error(request.statusText));
       }
     }
