@@ -5,3 +5,5 @@ An exercise to display the current ETH/BTC prices via websockets
 npm installl
 
 node index.js
+
+url: localhost:4000
