@@ -1,5 +1,5 @@
 {
-  "name": "poloniex websockets exercise",
+  "name": "poloniex_websockets_exercise",
   "version": "1.0.0",
   "description": "grabs relevant information from BTC market and Poloniex api's and display the relevant information to the frontend via websockets",
   "main": "index.js",
