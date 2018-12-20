@@ -1,10 +1,12 @@
-let bitcoinTickerInfo = {};
+//initializing frontend sockets
 let socket = io.connect("http://localhost:4000");
 
+//price divs to be updated via sockets
 let priceOutput = document.getElementById("converted-price");
 let rawOutput = document.getElementById("raw-price");
+let bitcoinTickerInfo = {};
 
-console.log("priceOutput", priceOutput);
+//gets the bitcoin information over a GET request
 function httpGET(url) {
   return new Promise((resolve, reject) => {
     let request = new XMLHttpRequest();
@@ -26,9 +28,8 @@ function httpGET(url) {
     request.send();
   })
 };
-
+//getting the information then fwd'ing the info to the server
 httpGET("https://api.coinmarketcap.com/v1/ticker/bitcoin/").then(response => {
-  console.log("response", response);
   socket.emit("bitcoin", {bitcoinTickerInfo: response});
 }, error => {
   console.error("error: ", error);
@@ -38,11 +39,12 @@ httpGET("https://api.coinmarketcap.com/v1/ticker/bitcoin/").then(response => {
 socket.on("currentPrices", (info) => {
 
   if (priceOutput !== null) {
+    //outputs the converted USD price
     priceOutput.innerHTML = `USD converted price: ${info["convertedPrice"]}`;
   }
 
   if (rawOutput !== null) {
+    //outputs the raw price
     rawOutput.innerHTML = `Raw ETH/BTC price: ${info["rawPrice"]}`;
   }
-  console.log("currentPrice: ", info);
 });

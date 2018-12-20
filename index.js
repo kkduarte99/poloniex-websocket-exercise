@@ -12,6 +12,7 @@ let server = application.listen(4000, () => {
 });
 application.use(express.static("pub"));
 
+//initing variables
 let convertedPrice = 0;
 let rawPrice = 0;
 let bitcoinTickerInfo = {};
@@ -23,12 +24,13 @@ io.on("connection", (socket) => {
   console.log("made socket connection", socket.id);
 
   socket.on("bitcoin", (data) => {
-    //message the data
+    //messaging the data into usable information
     bitcoinTickerInfo = JSON.parse(data.bitcoinTickerInfo)[0];
     priceUsd = parseFloat(bitcoinTickerInfo["price_usd"]);
   });
 });
 
+//make intial connection to the poliex websocket
 poloniexWS.on("open", () => {
   console.log("successfully connected to wss://api2.poloniex.com");
 
@@ -58,6 +60,7 @@ poloniexWS.on("message", (data) => {
   }
 });
 
+//simple helper function that multiplies the two values and returns the result
 function calculateCurrentPrice(bitcoinUsdPrice, value) {
   return bitcoinUsdPrice * value;
 }
